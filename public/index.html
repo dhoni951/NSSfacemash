@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Comparison</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Who is hotter</h1>
+    <div id="images-container">
+        <img id="image1" src="" alt="Image 1" width="300">
+        <img id="image2" src="" alt="Image 2" width="300">
+    </div>
+
+    <!-- Link to go to the leaderboard page -->
+    <div class="navigation">
+        <a href="/leaderboard.html">Ranking</a>
+    </div>
+
+    <!-- Audio elements for specific images -->
+   <!-- Audio elements for specific images -->
+<audio id="music20" src="/music/music20.mp3" preload="auto"></audio>
+<audio id="music25" src="/music/music25.mp3" preload="auto"></audio>
+<audio id="music4" src="/music/music4.mp3" preload="auto"></audio>
+<audio id="music49" src="/music/music49.mp3" preload="auto"></audio> <!-- Added missing audio element -->
+<audio id="music53" src="/music/music53.mp3" preload="auto"></audio>
+
+
+
+
+
+    <script>
+        async function loadImages() {
+            const response = await fetch('/random-images');
+            const images = await response.json();
+
+            const image1 = document.getElementById('image1');
+            const image2 = document.getElementById('image2');
+            image1.src = images[0].image_url;
+            image2.src = images[1].image_url;
+
+            image1.dataset.id = images[0].id;
+            image2.dataset.id = images[1].id;
+
+            // Play specific audio if image20 or image25 appears
+            const music20 = document.getElementById('music20');
+            const music25 = document.getElementById('music25');
+            const music4 = document.getElementById('music4');
+            const music49 = document.getElementById('music49');
+            const music53 = document.getElementById('music53');
+
+
+
+
+            
+            if (images[0].id === 20 || images[1].id === 20) {
+                music20.play();
+                music25.pause();
+                music4.pause();
+                music49.pause();
+                music53.pause();
+                music25.currentTime = 0;
+            } 
+            
+            if (images[0].id === 53 || images[1].id === 53) {
+                music53.play();
+                music25.pause();
+                music4.pause();
+                music49.pause();
+                music20.pause();
+                music25.currentTime = 0;
+            }
+            
+            
+            
+            else if (images[0].id === 25 || images[1].id === 25) {
+                music25.play();
+                music20.pause();
+                music4.pause();
+                music49.pause();
+                music53.pause();
+
+
+                music20.currentTime = 0;
+
+            }   
+             else if (images[0].id === 49 || images[1].id === 49) {
+                music49.play();
+                music20.pause();
+                music25.pause();
+                music4.pause();
+                music53.pause();
+
+                music20.currentTime = 0;
+             }
+            
+            
+            else if (images[0].id === 4 || images[1].id === 4) {
+                music4.play();
+                music20.pause();
+                music25.pause();
+                music49.pause();
+                music53.pause();
+
+                music20.currentTime = 0;
+            } else {
+                // Pause all audio if neither image20 nor image25 is shown
+                music20.pause();
+                music20.currentTime = 0;
+                music25.pause();
+                music25.currentTime = 0;
+                music4.pause();
+                music4.currentTime = 0;
+                music49.pause();
+                music49.currentTime = 0;
+                music53.pause();
+                music53.currentTime = 0;
+
+            
+            }
+        }
+
+        async function vote(imageId) {
+            await fetch('/vote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: imageId })
+            });
+
+            loadImages();
+        }
+
+        document.getElementById('image1').onclick = function() {
+            vote(this.dataset.id);
+        };
+        document.getElementById('image2').onclick = function() {
+            vote(this.dataset.id);
+        };
+
+        loadImages();
+    </script>
+</body>
+</html>
