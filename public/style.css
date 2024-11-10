@@ -1,132 +1,249 @@
 /* Body styling */
 body {
-  background-color: #ffffff;
-  background-image: url('../images/background.jpg'); /* Add your background image path here */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #333;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  color: #333;
-  text-shadow: 1px 1px 4px rgba(100, 100, 100, 0.3);
-  margin-bottom: 20px;
-}
-
-#images-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Animated image border */
-#images-container img,
-#leaderboard img {
-  width: 300px;
-  height: auto;
-  border-radius: 12px;
-  padding: 8px;
-  background-color: #ffffff;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-#images-container img::before,
-#leaderboard img::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  border-radius: 16px;
-  background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4, #ff7e5f);
-  background-size: 200% 200%;
-  z-index: -1;
-  animation: borderAnimation 5s linear infinite;
-}
-
-#images-container img:hover,
-#leaderboard img:hover {
-  transform: scale(1.05);
-}
-
-/* Leaderboard container styling */
-#leaderboard {
-  margin-top: 80px;
-  width: 80%;
-  max-width: 600px;
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-#leaderboard h2 {
-  #leaderboard h2 {
-    font-size: 2rem;
+    background-color: #ffffff;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #333;
-    margin-top: 40px; /* Adjust this value to move the title down */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* Logo styling */
+  .logo-container {
+    display: flex;
+    justify-content: center;
     margin-bottom: 20px;
   }
   
-}
-
-#leaderboard ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#leaderboard li {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  color: #555;
-  transition: transform 0.3s ease;
-}
-
-#leaderboard li:hover {
-  transform: scale(1.02);
-  background-color: #f9f9f9;
-  border-radius: 10px;
-}
-
-#leaderboard li img {
-  width: 80px;
-  height: auto;
-  margin-right: 15px;
-  border-radius: 8px;
-}
-
-#leaderboard li:last-child {
-  border-bottom: none;
-}
-
-#leaderboard li span {
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-/* Animated border keyframes */
-@keyframes borderAnimation {
-  0% {
+  .logo {
+    width: 160px;
+    height: auto;
+    animation: pulse 2s infinite ease-in-out, rotate 6s linear infinite;
+    transform-origin: center;
+  }
+  
+  /* Animated "Who is Hotter" text styling */
+  h1 {
+    font-size: 2.5rem;
+    color: #ff7e5f;
+    text-shadow: 0 0 10px rgba(255, 126, 95, 0.8), 0 0 20px rgba(255, 180, 123, 0.6), 0 0 30px rgba(134, 168, 231, 0.4);
+    margin-bottom: 20px;
+    text-align: center;
+    animation: colorPulse 3s infinite alternate, zoomInOut 2s infinite ease-in-out, fadeInOut 4s infinite;
+  }
+  
+  /* Color Pulse Animation */
+  @keyframes colorPulse {
+    0% { color: #19ca5d; }
+    20% { color: #feb47b; }
+    40% { color: #020710; }
+    60% { color: #161818; }
+    80% { color: #0e0c0c; }
+    100% { color: #1d191c; }
+  }
+  
+  /* Zoom In and Out Animation */
+  @keyframes zoomInOut {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  /* Fade In and Out Animation */
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  /* Image container styling */
+  #images-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Animated image border */
+  #images-container img,
+  #leaderboard img {
+    width: 300px;
+    height: auto;
+    border-radius: 12px;
+    padding: 8px;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  #images-container img::before,
+  #leaderboard img::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 16px;
+    background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4, #ff7e5f);
+    background-size: 200% 200%;
+    z-index: -1;
+    animation: borderAnimation 5s linear infinite;
+  }
+  
+  #images-container img:hover,
+  #leaderboard img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Animated border keyframes */
+  @keyframes borderAnimation {
+    0% {
       background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Navigation */
+  .navigation {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .navigation a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
+  }
+  
+  .navigation a:hover {
+    color: #ff7e5f;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+  
+    .logo {
+      width: 120px;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+  
+    #images-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    #images-container img,
+    #leaderboard img {
+      width: 100%;
+      max-width: 250px;
+    }
+  
+    .navigation {
+      font-size: 1rem;
+    }
+  
+    .navigation a {
+      padding-bottom: 1px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo {
+      width: 100px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .navigation {
+      font-size: 0.9rem;
+      text-align: center;
+      width: 100%;
+      position: static;
+      margin-bottom: 10px;
+    }
+  
+    #images-container img,
+    #leaderboard img {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+  
+
+ /* General styling for the navigation section */
+.navigation {
+  display: flex;
+  gap: 20px;
+  position: absolute; /* Position at the top of the page */
+  top: 10px; /* Distance from the top */
+  left: 10px; /* Distance from the left */
+  z-index: 10; /* Ensures the navigation is above other elements */
+}
+
+/* Basic button styling */
+#ranking-link, #jokes-btn {
+  text-decoration: none;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  position: relative;
+  transition: color 0.4s ease;
+  border-radius: 5px;
+}
+
+/* Neon border animation */
+#ranking-link::before, #jokes-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 5px #0ff, 0 0 15px #0ff, 0 0 30px #0ff, 0 0 60px #0ff;
+  animation: neon-border 3s linear infinite;
+}
+
+/* Text color on hover */
+#ranking-link:hover, #jokes-btn:hover {
+  color: #0ff;
+}
+
+/* Neon light animation keyframes */
+@keyframes neon-border {
+  0% {
+      clip-path: inset(0% 100% 0% 0%);
+  }
+  50% {
+      clip-path: inset(0% 0% 0% 0%);
   }
   100% {
-      background-position: 100% 50%;
+      clip-path: inset(0% 0% 0% 100%);
   }
 }
+ 

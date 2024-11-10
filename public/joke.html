@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes Page</title>
+    <link rel="stylesheet" href="joke.css">
+</head>
+<body>
+    <h1> Your Joke</h1>
+
+    <!-- Joke submission form -->
+    <form id="jokeForm">
+        <input type="text" id="username" placeholder="Your Name" required>
+        <textarea id="jokeText" placeholder="Your Joke" required></textarea>
+        <button type="submit">Submit Joke</button>
+    </form>
+
+    <!-- Section to display jokes -->
+    <div id="jokesContainer"></div>
+
+    <script>
+        // Function to fetch and display jokes in ranking order
+        async function loadJokes() {
+            const response = await fetch('/get-jokes');
+            const jokes = await response.json();
+            const jokesContainer = document.getElementById('jokesContainer');
+            jokesContainer.innerHTML = '';
+
+            jokes.forEach((joke, index) => {
+                const jokeElement = document.createElement('div');
+                jokeElement.className = 'joke';
+
+                jokeElement.innerHTML = `
+                    <p><strong>Rank ${index + 1}</strong> - <strong>${joke.username}</strong>: ${joke.text}</p>
+                    <p>
+                        <button onclick="voteJoke(${joke.id}, true)">👍 ${joke.likes}</button>
+                        <button onclick="voteJoke(${joke.id}, false)">👎 ${joke.dislikes}</button>
+                    </p>
+                `;
+
+                jokesContainer.appendChild(jokeElement);
+            });
+        }
+
+        // Handle joke submission and reload jokes
+        document.getElementById('jokeForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const jokeText = document.getElementById('jokeText').value;
+
+            await fetch('/submit-joke', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, text: jokeText })
+            });
+
+            document.getElementById('username').value = '';
+            document.getElementById('jokeText').value = '';
+            loadJokes();  // Reload jokes after submission
+        });
+
+        // Handle voting for jokes
+        async function voteJoke(id, isLike) {
+            await fetch('/vote-joke', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, isLike })
+            });
+
+            loadJokes();  // Reload jokes after voting
+        }
+
+        // Load jokes on page load
+        loadJokes();
+    </script>
+</body>
+</html>
