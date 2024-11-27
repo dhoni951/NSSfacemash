@@ -246,4 +246,69 @@ body {
       clip-path: inset(0% 0% 0% 100%);
   }
 }
- 
+ /* Styling the form */
+#love-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+#love-form input, #love-form button {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+#love-form button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#love-form button:hover {
+  background-color: #ff1493;
+}
+
+/* Hidden result by default */
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Animations */
+#love-result {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  color: #ff69b4;
+  animation: fadeIn 1s ease-in-out, scaleUp 1s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Fade in effect */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Scale-up effect */
+@keyframes scaleUp {
+  0% {
+      transform: scale(0.5);
+  }
+  100% {
+      transform: scale(1);
+  }
+}

@@ -32,7 +32,7 @@
                 jokeElement.className = 'joke';
 
                 jokeElement.innerHTML = `
-                    <p><strong>Rank ${index + 1}</strong> - <strong>${joke.username}</strong>: ${joke.text}</p>
+                    <p><strong> ${index + 1}</strong> - <strong>${joke.username}</strong>: ${joke.text}</p>
                     <p>
                         <button onclick="voteJoke(${joke.id}, true)">👍 ${joke.likes}</button>
                         <button onclick="voteJoke(${joke.id}, false)">👎 ${joke.dislikes}</button>
